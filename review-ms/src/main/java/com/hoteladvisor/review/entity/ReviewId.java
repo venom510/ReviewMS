@@ -12,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Slf4j
-public class ReviewId {
+public final class ReviewId {
 	private String hotelId;
 	private String userId;
 	

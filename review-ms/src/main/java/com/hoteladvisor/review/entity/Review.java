@@ -15,10 +15,26 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
 @Getter
-public class Review {
+public final class Review {
 	@EmbeddedId
 	private ReviewId reviewId;
 	private String comment;
 	private Rating rating;
-	private Instant timestamp;
+	private Instant reviewedOn;
+
+	public static ReviewBuilder builder() {
+		return new CustomBuilder();
+	}
+
+	private static final class CustomBuilder extends ReviewBuilder {
+		private void initializeTimestamp() {
+			super.reviewedOn = Instant.now();
+		}
+
+		@Override
+		public Review build() {
+			initializeTimestamp();
+			return super.build();
+		}
+	}
 }
